@@ -114,20 +114,23 @@ const features = [
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {features.map((feature) => {
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {features.map((feature, index) => {
             const Icon = feature.icon;
 
             return (
               <Link
                 key={feature.name}
                 to={feature.path}
-                className="
+                className={`
                   relative
                   aspect-square
+                  max-w-35
+                  w-full
+                  mx-auto
                   bg-[#1E1E1E]
                   rounded-2xl
-                  p-4
+                  p-3
                   border
                   border-[#2A2A2A]
                   hover:border-[#007AFF]
@@ -135,12 +138,17 @@ const features = [
                   transition-all
                   duration-300
                   group
-                "
+
+                  ${
+                    index === features.length - 1
+                      ? "md:col-start-2"
+                      : ""
+                  }
+                `}
               >
-                {/* Icon */}
-                <div className="absolute top-4 right-4">
+                <div className="absolute top-3 right-3">
                   <Icon
-                    size={24}
+                    size={20}
                     className="
                       text-[#007AFF]
                       group-hover:scale-110
@@ -149,9 +157,8 @@ const features = [
                   />
                 </div>
 
-                {/* Text */}
                 <div className="h-full flex items-center justify-center text-center">
-                  <span className="font-semibold text-lg">
+                  <span className="font-medium text-sm">
                     {feature.name}
                   </span>
                 </div>
