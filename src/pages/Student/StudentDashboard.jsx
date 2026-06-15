@@ -114,51 +114,51 @@ const features = [
           </div>
         </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {features.map((feature) => {
-          const Icon = feature.icon;
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {features.map((feature) => {
+            const Icon = feature.icon;
 
-          return (
-            <Link
-              key={feature.name}
-              to={feature.path}
-              className="
-                relative
-                aspect-square
-                bg-[#1E1E1E]
-                rounded-2xl
-                p-4
-                border
-                border-[#2A2A2A]
-                hover:border-[#007AFF]
-                hover:bg-[#222222]
-                transition-all
-                duration-300
-                group
-              "
-            >
-              {/* Icon */}
-              <div className="absolute top-4 right-4">
-                <Icon
-                  size={24}
-                  className="
-                    text-[#007AFF]
-                    group-hover:scale-110
-                    transition
-                  "
-                />
-              </div>
+            return (
+              <Link
+                key={feature.name}
+                to={feature.path}
+                className="
+                  relative
+                  aspect-square
+                  bg-[#1E1E1E]
+                  rounded-2xl
+                  p-4
+                  border
+                  border-[#2A2A2A]
+                  hover:border-[#007AFF]
+                  hover:bg-[#222222]
+                  transition-all
+                  duration-300
+                  group
+                "
+              >
+                {/* Icon */}
+                <div className="absolute top-4 right-4">
+                  <Icon
+                    size={24}
+                    className="
+                      text-[#007AFF]
+                      group-hover:scale-110
+                      transition
+                    "
+                  />
+                </div>
 
-              {/* Text */}
-              <div className="h-full flex items-center justify-center text-center">
-                <span className="font-semibold text-lg">
-                  {feature.name}
-                </span>
-              </div>
-            </Link>
-          );
-        })}
-      </div>
+                {/* Text */}
+                <div className="h-full flex items-center justify-center text-center">
+                  <span className="font-semibold text-lg">
+                    {feature.name}
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </ProtectedRoute>
   );
