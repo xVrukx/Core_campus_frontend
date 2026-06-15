@@ -114,51 +114,41 @@ const features = [
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {features.map((feature, index) => {
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 justify-items-center">
+          {features.map((feature) => {
             const Icon = feature.icon;
 
             return (
               <Link
                 key={feature.name}
                 to={feature.path}
-                className={`
+                className="
                   relative
-                  aspect-square
-                  max-w-35
-                  w-full
-                  mx-auto
+                  w-32
+                  h-32
                   bg-[#1E1E1E]
                   rounded-2xl
-                  p-3
                   border
                   border-[#2A2A2A]
                   hover:border-[#007AFF]
-                  hover:bg-[#222222]
+                  hover:bg-[#242424]
                   transition-all
                   duration-300
                   group
-
-                  ${
-                    index === features.length - 1
-                      ? "md:col-start-2"
-                      : ""
-                  }
-                `}
+                "
               >
-                <div className="absolute top-3 right-3">
-                  <Icon
-                    size={20}
-                    className="
-                      text-[#007AFF]
-                      group-hover:scale-110
-                      transition
-                    "
-                  />
-                </div>
+                <Icon
+                  size={22}
+                  className="
+                    absolute
+                    top-3
+                    right-3
+                    text-[#007AFF]
+                  "
+                />
 
-                <div className="h-full flex items-center justify-center text-center">
-                  <span className="font-medium text-sm">
+                <div className="flex h-full items-center justify-center px-2">
+                  <span className="text-sm font-medium text-center">
                     {feature.name}
                   </span>
                 </div>
