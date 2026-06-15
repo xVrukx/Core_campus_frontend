@@ -3,19 +3,48 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getUserData, ProtectedRoute } from "../../RouteProtect";
 import { Navbar } from "../../components/NavBar";
+import { ClipboardCheck, FileText, Calendar, GraduationCap, FolderOpen, Bell, Award } from "lucide-react";
 
 export const StudentDashboard = () => {
   const user = getUserData();
 
-  const features = [
-    { name: "Attendance", path: "/attendance" },
-    { name: "Results", path: "/results" },
-    { name: "Timetable", path: "/timetable" },
-    { name: "Exam & Hall Ticket", path: "/exam" },
-    { name: "Files", path: "/files" },
-    { name: "Announcements", path: "/announcements" },
-    { name: "Credits", path: "/credits" },
-  ];
+const features = [
+  {
+    name: "Attendance",
+    path: "/attendance",
+    icon: ClipboardCheck,
+  },
+  {
+    name: "Results",
+    path: "/results",
+    icon: GraduationCap,
+  },
+  {
+    name: "Timetable",
+    path: "/timetable",
+    icon: Calendar,
+  },
+  {
+    name: "Exam & Hall Ticket",
+    path: "/exam",
+    icon: FileText,
+  },
+  {
+    name: "Files",
+    path: "/files",
+    icon: FolderOpen,
+  },
+  {
+    name: "Announcements",
+    path: "/announcements",
+    icon: Bell,
+  },
+  {
+    name: "Credits",
+    path: "/credits",
+    icon: Award,
+  },
+];
 
   const [theory, setTheory] = useState("--");
   const [practical, setPractical] = useState("--");
@@ -85,17 +114,51 @@ export const StudentDashboard = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
-          {features.map((feature) => (
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {features.map((feature) => {
+          const Icon = feature.icon;
+
+          return (
             <Link
               key={feature.name}
               to={feature.path}
-              className="bg-[#1E1E1E] rounded-2xl p-5 flex items-center justify-center text-center font-semibold hover:bg-[#007AFF] hover:text-white transition-all duration-300 min-h-30"
+              className="
+                relative
+                aspect-square
+                bg-[#1E1E1E]
+                rounded-2xl
+                p-4
+                border
+                border-[#2A2A2A]
+                hover:border-[#007AFF]
+                hover:bg-[#222222]
+                transition-all
+                duration-300
+                group
+              "
             >
-              {feature.name}
+              {/* Icon */}
+              <div className="absolute top-4 right-4">
+                <Icon
+                  size={24}
+                  className="
+                    text-[#007AFF]
+                    group-hover:scale-110
+                    transition
+                  "
+                />
+              </div>
+
+              {/* Text */}
+              <div className="h-full flex items-center justify-center text-center">
+                <span className="font-semibold text-lg">
+                  {feature.name}
+                </span>
+              </div>
             </Link>
-          ))}
-        </div>
+          );
+        })}
+      </div>
       </div>
     </ProtectedRoute>
   );
