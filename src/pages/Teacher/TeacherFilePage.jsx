@@ -18,7 +18,7 @@ export const TeacherFilePage = () => {
       if (!user?.name) return;
 
       const res = await fetch(
-        `http://localhost:5000/teacher/files/${encodeURIComponent(user.name)}`
+        `https://core-campus-backend.onrender.com/teacher/files/${encodeURIComponent(user.name)}`
       );
 
       if (!res.ok) {
@@ -68,7 +68,7 @@ export const TeacherFilePage = () => {
       formData.append("coursesName", JSON.stringify(selectedCourses));
       formData.append("file", file);
 
-      const res = await fetch("http://localhost:5000/teacher/files/upload", {
+      const res = await fetch("https://core-campus-backend.onrender.com/teacher/files/upload", {
         method: "POST",
         body: formData,
       });
