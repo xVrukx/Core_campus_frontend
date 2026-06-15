@@ -124,7 +124,7 @@ const features = [
                 to={feature.path}
                 className="
                   relative
-                  w-32
+                  w-72
                   h-32
                   bg-[#1E1E1E]
                   rounded-2xl

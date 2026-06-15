@@ -2,16 +2,33 @@
 import { Link } from "react-router-dom";
 import { getUserData, ProtectedRoute } from "../../RouteProtect";
 import { Navbar } from "../../components/NavBar";
+import { ClipboardCheck, CalendarDays, FolderOpen, Bell } from "lucide-react";
 
 export const TeacherDashboard = () => {
   const user = getUserData();
 
-  const features = [
-    { name: "Attendance", path: "/teacher/attendance" },
-    { name: "Timetable", path: "/teacher/timetable" },
-    { name: "Files", path: "/teacher/files" },
-    { name: "Announcements", path: "/announcements" },
-  ];
+const features = [
+  {
+    name: "Attendance",
+    path: "/teacher/attendance",
+    icon: ClipboardCheck,
+  },
+  {
+    name: "Timetable",
+    path: "/teacher/timetable",
+    icon: CalendarDays,
+  },
+  {
+    name: "Files",
+    path: "/teacher/files",
+    icon: FolderOpen,
+  },
+  {
+    name: "Announcements",
+    path: "/announcements",
+    icon: Bell,
+  },
+];
 
   return (
     <ProtectedRoute allowedRole="teacher">
@@ -29,24 +46,49 @@ export const TeacherDashboard = () => {
             Teacher Features
           </h2>
 
-          <div className="grid grid-cols-3 gap-4">
-            {features.slice(0, 3).map((feature) => (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 justify-items-center">
+          {features.map((feature) => {
+            const Icon = feature.icon;
+
+            return (
               <Link
                 key={feature.name}
                 to={feature.path}
-                className="bg-[#121212] rounded-2xl p-5 flex items-center justify-center text-center font-semibold hover:bg-[#007AFF] hover:text-white transition-all duration-300 min-h-30"
+                className="
+                  relative
+                  w-72
+                  h-32
+                  bg-[#1E1E1E]
+                  rounded-2xl
+                  border
+                  border-[#2A2A2A]
+                  hover:border-[#007AFF]
+                  hover:bg-[#242424]
+                  transition-all
+                  duration-300
+                  group
+                "
               >
-                {feature.name}  
-              </Link>
-            ))}
+                <Icon
+                  size={22}
+                  className="
+                    absolute
+                    top-3
+                    right-3
+                    text-[#007AFF]
+                  "
+                />
 
-            <Link
-              to={features[3].path}
-              className="bg-[#121212] rounded-2xl p-5 flex items-center justify-center text-center font-semibold hover:bg-[#007AFF] hover:text-white transition-all duration-300 min-h-30 col-span-3"
-            >
-              {features[3].name}
-            </Link>
-          </div>
+                <div className="flex h-full items-center justify-center px-2">
+                  <span className="text-sm font-medium text-center">
+                    {feature.name}
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+
         </div>
       </div>
     </ProtectedRoute>
